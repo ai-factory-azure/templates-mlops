@@ -33,7 +33,7 @@ inputs = []
 
 for arg in shlex.split(config['training_command']):
     print(f"Processing training argument: {arg}")
-    result = re.search(r"azureml/(\S+)/(\S+)", str(arg))
+    result = re.search(r"azureml:(\S+):(\S+)", str(arg))
     if result:
         dataset_name = result.group(1)
         dataset_version = result.group(2)
