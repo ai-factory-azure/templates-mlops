@@ -6,4 +6,4 @@ steps:
       scriptType: bash
       scriptLocation: inlineScript
       inlineScript: |
-        python templates/shared_code/deploy_training_pipeline.py -f ../controller/controller-config.yml
+        python templates/shared_code/deploy_training_pipeline.py -f controller/controller-config.yml
