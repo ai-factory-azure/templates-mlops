@@ -2,6 +2,7 @@ import os
 import re
 import argparse
 import yaml
+import shlex
 
 import azureml.core
 from azureml.core import Workspace, Experiment, Datastore, Dataset, RunConfiguration, Environment
@@ -30,7 +31,8 @@ runconfig.environment = env
 arguments = []
 inputs = []
 
-for arg in config['training_command']:
+for arg in shlex.split(config['training_command']):
+    print(f"Processing training argument: {arg}")
     result = re.search(r"azureml/(\S+)/(\S+)", str(arg))
     if result:
         dataset_name = result.group(1)
