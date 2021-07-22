@@ -31,7 +31,7 @@ arguments = []
 inputs = []
 
 for arg in config['training_command']:
-    result = re.search(r"azureml:(\S+):(\S+)", str(arg))
+    result = re.search(r"azureml/(\S+)/(\S+)", str(arg))
     if result:
         dataset_name = result.group(1)
         dataset_version = result.group(2)

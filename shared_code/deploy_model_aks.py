@@ -25,12 +25,12 @@ print('Connecting to workspace')
 ws = Workspace.from_config()
 print(f'WS name: {ws.name}\nRegion: {ws.location}\nSubscription id: {ws.subscription_id}\nResource group: {ws.resource_group}')
 
-env = Environment.get(workspace=ws, name=config['environment_name'])
+env = Environment.get(workspace=ws, name=config['inference_environment_name'])
 model = Model(ws, config['model_name'])
 
-aks_target = ComputeTarget(workspace=ws, name=config['aks_target'])
+aks_target = ComputeTarget(workspace=ws, name=config['inference_aks_target'])
 
-inf_config = InferenceConfig(entry_script=config['score_script'],
+inf_config = InferenceConfig(entry_script=config['inference_script'],
                              source_directory='code/src/',
                              environment=env)
 aks_config = AksWebservice.deploy_configuration(token_auth_enabled=False,
@@ -38,7 +38,7 @@ aks_config = AksWebservice.deploy_configuration(token_auth_enabled=False,
                                                 enable_app_insights=True)
 
 aks_service = Model.deploy(workspace=ws,
-                           name=config['deployment_name'],
+                           name=config['inference_deployment_name'],
                            models=[model],
                            inference_config=inf_config,
                            deployment_config=aks_config,
