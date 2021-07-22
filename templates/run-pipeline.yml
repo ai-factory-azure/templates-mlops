@@ -1,0 +1,13 @@
+parameters:
+- name: pipeline_yaml
+  type: string
+
+steps:
+  - task: AzureCLI@2
+    displayName: Run pipeline in AML
+    inputs:
+      azureSubscription: $(ml_workspace_connection)
+      scriptType: bash
+      scriptLocation: inlineScript
+      inlineScript: |
+        python templates/shared_code/run_pipeline.py -f ${{ parameters.pipeline_yaml }} -p $(pipeline_id)
