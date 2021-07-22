@@ -35,7 +35,8 @@ inf_config = InferenceConfig(entry_script=config['inference_script'],
                              environment=env)
 aks_config = AksWebservice.deploy_configuration(token_auth_enabled=False,
                                                 auth_enabled=True,
-                                                enable_app_insights=True)
+                                                enable_app_insights=True,
+                                                collect_model_data=True)
 
 aks_service = Model.deploy(workspace=ws,
                            name=config['inference_deployment_name'],
