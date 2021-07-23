@@ -77,4 +77,5 @@ pipeline.validate()
 published_pipeline = pipeline.publish(config['training_pipeline_name'])
 
 # Output pipeline_id in specified format which will convert it to a variable in Azure DevOps
-print(f'##vso[task.setvariable variable=pipeline_id]{published_pipeline.id}')
+print(f'Exporting pipeline id {published_pipeline.id} as environment variable deployed_pipeline_id')
+print(f'##vso[task.setvariable variable=deployed_pipeline_id]{published_pipeline.id}')
