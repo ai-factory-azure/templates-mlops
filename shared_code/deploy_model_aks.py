@@ -33,16 +33,27 @@ aks_target = ComputeTarget(workspace=ws, name=config['inference_aks_target'])
 inf_config = InferenceConfig(entry_script=config['inference_script'],
                              source_directory='code/src/',
                              environment=env)
-aks_config = AksWebservice.deploy_configuration(token_auth_enabled=False,
-                                                auth_enabled=True,
-                                                enable_app_insights=True,
-                                                collect_model_data=True)
+
+# Full definition see https://docs.microsoft.com/en-us/python/api/azureml-core/azureml.core.webservice.akswebservice?view=azure-ml-py
+aks_config = {
+    'enable_app_insights': config['inference_enable_app_insights'],
+    'collect_model_data': config['inference_collect_model_data'],
+    'token_auth_enabled': False,
+    'auth_enabled': True,
+    'cpu_cores': config['inference_cpu_cores_per_replica'],
+    'memory_gb': config['inference_memory_gb_per_replica'],
+    'autoscale_enabled': True,
+    'autoscale_min_replicas': config['inference_autoscale_min_replicas'],
+    'autoscale_max_replicas': config['inference_autoscale_max_replicas'],
+    'autoscale_refresh_seconds': 10,
+    'autoscale_target_utilization': 70
+}
 
 aks_service = Model.deploy(workspace=ws,
                            name=config['inference_deployment_name'],
                            models=[model],
                            inference_config=inf_config,
-                           deployment_config=aks_config,
+                           deployment_config=AksWebservice.deploy_configuration(**aks_config),
                            deployment_target=aks_target,
                            overwrite=True)
 
