@@ -8,4 +8,6 @@ steps:
       inlineScript: |
         set -e
         python templates/shared_code/deploy_batch_scoring_pipeline.py -f controller/controller-config.yml
+        echo "PIPELINE_ID"
+        echo $(pipeline_id)
         python templates/shared_code/deploy_pipeline_to_endpoint.py -p $(pipeline_id) -f controller/controller-config.yml
