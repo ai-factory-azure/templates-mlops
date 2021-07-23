@@ -9,5 +9,5 @@ steps:
         set -e
         python templates/shared_code/deploy_batch_scoring_pipeline.py -f controller/controller-config.yml
         echo "deployed_pipeline_id"
-        echo $(deployed_pipeline_id)
-        python templates/shared_code/deploy_pipeline_to_endpoint.py -p $(deployed_pipeline_id) -f controller/controller-config.yml
+        echo $DEPLOYED_PIPELINE_ID
+        python templates/shared_code/deploy_pipeline_to_endpoint.py -p $DEPLOYED_PIPELINE_ID -f controller/controller-config.yml
