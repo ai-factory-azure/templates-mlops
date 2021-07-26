@@ -6,8 +6,12 @@ steps:
       scriptType: bash
       scriptLocation: inlineScript
       inlineScript: |
-        set -e
+        #set -e
         python templates/shared_code/deploy_batch_scoring_pipeline.py -f controller/controller-config.yml
+        echo "env"
+        env
+        echo "printenv"
+        printenv
         echo "deployed_pipeline_id"
         echo $DEPLOYED_PIPELINE_ID
         python templates/shared_code/deploy_pipeline_to_endpoint.py -p $DEPLOYED_PIPELINE_ID -f controller/controller-config.yml
