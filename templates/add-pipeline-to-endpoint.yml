@@ -6,12 +6,4 @@ steps:
       scriptType: bash
       scriptLocation: inlineScript
       inlineScript: |
-        set -e
-        echo "env"
-        env
-        echo "printenv"
-        printenv
-        echo "pipeline_id"
-        echo $(pipeline_id)
-        echo $PIPELINE_ID
-        python templates/shared_code/deploy_pipeline_to_endpoint.py -p $(pipeline_id) -f controller/controller-config.yml
+        python templates/shared_code/add_pipeline_to_endpoint.py -p $(pipeline_id)

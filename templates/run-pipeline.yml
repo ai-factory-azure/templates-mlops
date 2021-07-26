@@ -10,4 +10,4 @@ steps:
       scriptType: bash
       scriptLocation: inlineScript
       inlineScript: |
-        python templates/shared_code/run_pipeline.py -f ${{ parameters.pipeline_yaml }} -p $(pipeline_id)
+        python templates/shared_code/run_pipeline.py -p $(pipeline_id)

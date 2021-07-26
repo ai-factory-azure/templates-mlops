@@ -8,4 +8,3 @@ steps:
       inlineScript: |
         set -e
         python templates/shared_code/deploy_training_pipeline.py -f controller/controller-config.yml
-        python templates/shared_code/deploy_pipeline_to_endpoint.py -p $(deployed_pipeline_id) -f controller/controller-config.yml
