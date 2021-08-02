@@ -3,12 +3,9 @@ import re
 import argparse
 import yaml
 import shlex
-import azureml.core
 
 from azureml.core import Workspace
 from azureml.core.compute import AmlCompute, ComputeTarget
-
-print("Azure ML SDK version:", azureml.core.VERSION)
 
 # parser = argparse.ArgumentParser("Get compute")
 # parser.add_argument("-f", type=str, help="Controller Config YAML file")
