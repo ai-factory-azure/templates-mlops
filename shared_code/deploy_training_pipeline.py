@@ -65,11 +65,11 @@ inputs = []
 # print(training_dataset_consumption)
 
 
-training_dataset = Dataset.get_by_name(ws, 'mnist-tiny')
+training_dataset = Dataset.get_by_name(ws,'mnist-tiny')
 training_dataset_parameter = PipelineParameter(name="training_dataset", default_value=training_dataset)
 training_dataset_consumption = DatasetConsumptionConfig("training_dataset", training_dataset_parameter).as_download()
-arguments.append(training_dataset_consumption)
-inputs.append(training_dataset_consumption)
+# arguments.append(training_dataset_consumption)
+# inputs.append(training_dataset_consumption)
 #print(training_dataset_consumption)
 
 
