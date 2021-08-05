@@ -31,15 +31,6 @@ training_dataset_consumption = None
 arguments = []
 inputs = []
 
-# def parse_args(training_command: str):
-
-
-# def main():
-
-
-# if __name__ == "__main__":
-#     main()
-
 for arg in shlex.split(config['training_command']):
     print(f"Processing training argument: {arg}")
     result = re.search(r"azureml:(\S+):(\S+)", str(arg))
@@ -53,9 +44,6 @@ for arg in shlex.split(config['training_command']):
         # FIXME: Make download or mount configurable
         # FIXME: Allow version==latest
         training_dataset = Dataset.get_by_name(ws, dataset_name, dataset_version)
-        # training_dataset_parameter = PipelineParameter(name="training_dataset", default_value=training_dataset)
-        # training_dataset_consumption = DatasetConsumptionConfig("training_dataset", training_dataset_parameter).as_download()
-        # training_dataset = Dataset.get_by_name(ws,'mnist-tiny')
         training_dataset_parameter = PipelineParameter(name="training_dataset", default_value=training_dataset)
         training_dataset_consumption = DatasetConsumptionConfig("training_dataset", training_dataset_parameter).as_download()
         arguments.append(training_dataset_consumption)
@@ -67,13 +55,6 @@ for arg in shlex.split(config['training_command']):
 print(f"Expanded arguments: {arguments}")
 print(training_dataset_consumption)
 
-
-
-# arguments.append(training_dataset_consumption)
-# inputs.append(training_dataset_consumption)
-#print(training_dataset_consumption)
-
-
 train_step = PythonScriptStep(name="train-step",
                         runconfig=runconfig,
                         compute_target=config['training_pipeline_target'],
@@ -81,8 +62,6 @@ train_step = PythonScriptStep(name="train-step",
                         script_name=arguments[0],
                         arguments=arguments[1:],
                         inputs=inputs,
-                        # arguments=["--data_path", training_dataset_consumption],
-                        # inputs=[training_dataset_consumption],
                         allow_reuse=False)
 
 register_step = PythonScriptStep(name="register-step",
