@@ -45,7 +45,7 @@ for arg in shlex.split(config['training_command']):
         # FIXME: Allow version==latest
         training_dataset = Dataset.get_by_name(ws, dataset_name, dataset_version)
         training_dataset_parameter = PipelineParameter(name="training_dataset", default_value=training_dataset)
-        training_dataset_consumption = DatasetConsumptionConfig("training_dataset", training_dataset_parameter).as_download()
+        global training_dataset_consumption = DatasetConsumptionConfig("training_dataset", training_dataset_parameter).as_download()
         arguments.append(training_dataset_consumption)
         inputs.append(training_dataset_consumption)
     else:
