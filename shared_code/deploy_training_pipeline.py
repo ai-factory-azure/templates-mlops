@@ -61,7 +61,7 @@ train_step = PythonScriptStep(name="train-step",
                         # arguments=arguments[1:],
                         # inputs=inputs,
                         arguments=["--data_path", arguments[1:]],
-                        inputs=arguments[1:],
+                        inputs=inputs,
                         allow_reuse=False)
 
 register_step = PythonScriptStep(name="register-step",
