@@ -31,7 +31,9 @@ runconfig.environment = env
 training_dataset_consumption = None
 arguments = []
 inputs = []
-# def parse_args():
+
+# def parse_args(training_command: str):
+
 
 # def main():
 
@@ -43,6 +45,7 @@ for arg in shlex.split(config['training_command']):
     print(f"Processing training argument: {arg}")
     result = re.search(r"azureml:(\S+):(\S+)", str(arg))
     if result:
+        print("in the if condition")
         dataset_name = result.group(1)
         dataset_version = result.group(2)
         print(f"Will use dataset {dataset_name} in version {dataset_version}")
@@ -57,6 +60,7 @@ for arg in shlex.split(config['training_command']):
         inputs.append(training_dataset_consumption)
         print(training_dataset_consumption)
     else:
+        print("in the else condition")
         arguments.append(arg)
 print(f"Expanded arguments: {arguments}")
 print(training_dataset_consumption)
