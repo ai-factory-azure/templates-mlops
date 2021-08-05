@@ -84,7 +84,7 @@ train_step = PythonScriptStep(name="train-step",
                         # inputs=inputs,
                         script_name= "train.py",
                         arguments=["--data_path", training_dataset_consumption],
-                        inputs=training_dataset_consumption,
+                        inputs=[training_dataset_consumption],
                         allow_reuse=False)
 
 register_step = PythonScriptStep(name="register-step",
