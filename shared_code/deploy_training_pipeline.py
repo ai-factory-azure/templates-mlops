@@ -30,6 +30,7 @@ runconfig.environment = env
 
 arguments = []
 inputs = []
+training_dataset_consumption = None
 
 for arg in shlex.split(config['training_command']):
     print(f"Processing training argument: {arg}")
@@ -50,7 +51,7 @@ for arg in shlex.split(config['training_command']):
     else:
         arguments.append(arg)
 print(f"Expanded arguments: {arguments}")
-print(arguments[1:])
+# print(arguments[1:])
 
 train_step = PythonScriptStep(name="train-step",
                         runconfig=runconfig,
@@ -59,7 +60,7 @@ train_step = PythonScriptStep(name="train-step",
                         script_name=arguments[0],
                         # arguments=arguments[1:],
                         # inputs=inputs,
-                        arguments=["--data_path", arguments[1:],
+                        arguments=["--data_path", arguments[1:]],
                         inputs=inputs,
                         allow_reuse=False)
 
