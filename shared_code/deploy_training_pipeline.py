@@ -28,7 +28,6 @@ env = Environment.get(workspace=ws, name=config['training_environment_name'])
 runconfig = RunConfiguration()
 runconfig.environment = env
 
-training_dataset_consumption = None
 arguments = []
 inputs = []
 
@@ -41,29 +40,38 @@ inputs = []
 # if __name__ == "__main__":
 #     main()
 
-for arg in shlex.split(config['training_command']):
-    print(f"Processing training argument: {arg}")
-    result = re.search(r"azureml:(\S+):(\S+)", str(arg))
-    if result:
-        print("in the if condition")
-        dataset_name = result.group(1)
-        dataset_version = result.group(2)
-        print(f"Will use dataset {dataset_name} in version {dataset_version}")
+# for arg in shlex.split(config['training_command']):
+#     print(f"Processing training argument: {arg}")
+#     result = re.search(r"azureml:(\S+):(\S+)", str(arg))
+#     if result:
+#         print("in the if condition")
+#         dataset_name = result.group(1)
+#         dataset_version = result.group(2)
+#         print(f"Will use dataset {dataset_name} in version {dataset_version}")
         
-        # FIXME: Won't work with multiple input datasets
-        # FIXME: Make download or mount configurable
-        # FIXME: Allow version==latest
-        training_dataset = Dataset.get_by_name(ws, dataset_name, dataset_version)
-        training_dataset_parameter = PipelineParameter(name="training_dataset", default_value=training_dataset)
-        training_dataset_consumption = DatasetConsumptionConfig("training_dataset", training_dataset_parameter).as_download()
-        arguments.append(training_dataset_consumption)
-        inputs.append(training_dataset_consumption)
-        print(training_dataset_consumption)
-    else:
-        print("in the else condition")
-        arguments.append(arg)
-print(f"Expanded arguments: {arguments}")
-print(training_dataset_consumption)
+#         # FIXME: Won't work with multiple input datasets
+#         # FIXME: Make download or mount configurable
+#         # FIXME: Allow version==latest
+#         training_dataset = Dataset.get_by_name(ws, dataset_name, dataset_version)
+#         training_dataset_parameter = PipelineParameter(name="training_dataset", default_value=training_dataset)
+#         training_dataset_consumption = DatasetConsumptionConfig("training_dataset", training_dataset_parameter).as_download()
+#         arguments.append(training_dataset_consumption)
+#         inputs.append(training_dataset_consumption)
+#         print(training_dataset_consumption)
+#     else:
+#         print("in the else condition")
+#         arguments.append(arg)
+# print(f"Expanded arguments: {arguments}")
+# print(training_dataset_consumption)
+
+
+training_dataset = Dataset.get_by_name(ws, 'mnist-tiny')
+training_dataset_parameter = PipelineParameter(name="training_dataset", default_value=training_dataset)
+training_dataset_consumption = DatasetConsumptionConfig("training_dataset", training_dataset_parameter).as_download()
+arguments.append(training_dataset_consumption)
+inputs.append(training_dataset_consumption)
+#print(training_dataset_consumption)
+
 
 train_step = PythonScriptStep(name="train-step",
                         runconfig=runconfig,
