@@ -31,6 +31,7 @@ runconfig.environment = env
 arguments = []
 inputs = []
 training_dataset_consumption = None
+print(training_dataset_consumption)
 
 for arg in shlex.split(config['training_command']):
     print(f"Processing training argument: {arg}")
@@ -48,10 +49,12 @@ for arg in shlex.split(config['training_command']):
         global training_dataset_consumption = DatasetConsumptionConfig("training_dataset", training_dataset_parameter).as_download()
         arguments.append(training_dataset_consumption)
         inputs.append(training_dataset_consumption)
+        print(training_dataset_consumption)
     else:
         arguments.append(arg)
 print(f"Expanded arguments: {arguments}")
 # print(arguments[1:])
+print(training_dataset_consumption)
 
 train_step = PythonScriptStep(name="train-step",
                         runconfig=runconfig,
