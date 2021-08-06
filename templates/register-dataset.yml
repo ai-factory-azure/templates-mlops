@@ -10,7 +10,7 @@ parameters:
 
 steps:
   - task: AzureCLI@2
-    displayName: Get compute
+    displayName: Register dataset
     inputs:
       azureSubscription: $(ml_workspace_connection)
       scriptType: bash
