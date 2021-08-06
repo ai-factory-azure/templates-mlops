@@ -16,4 +16,4 @@ steps:
       scriptType: bash
       scriptLocation: inlineScript
       inlineScript: |
-        python templates/shared_code/register_dataset.py -n ${{ parameters.dataset_name }} -d ${{ parameters.dataset_description }} -l ${{ parameters.dataset_local_path }} -p ${{ parameters.dataset_path_on_datastore }}
+        python templates/shared_code/register_dataset.py

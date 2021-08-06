@@ -11,14 +11,14 @@ def parse_args():
     return parser.parse_args()
 
 def main():
-    args = parse_args()
+    #args = parse_args()
     ws = Workspace.from_config()
     datastore = ws.get_default_datastore()
-    datastore.upload(src_dir = args.l, target_path = args.p, overwrite = True, show_progress = True)
-    print(f"About to register dataset {args.n}")
+    datastore.upload(src_dir = 'code/data/', target_path = 'data/', overwrite = True, show_progress = True)
+    #print(f"About to register dataset {args.n}")
 
-    dataset = Dataset.File.from_files(path=[(datastore, args.p)], validate=True)
-    dataset = dataset.register(workspace=ws,name=args.n, description=args.d)
+    dataset = Dataset.File.from_files(path=[(datastore, 'data/')], validate=True)
+    dataset = dataset.register(workspace=ws,name='mnist-tiny', description="test")
     print("Dataset registered")
 
 if __name__ == "__main__":
