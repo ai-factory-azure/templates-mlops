@@ -1,0 +1,19 @@
+parameters:
+- name: dataset_name
+  type: string
+- name: dataset_description
+  type: string
+- name: dataset_local_path
+  type: string
+- name: dataset_path_on_datastore
+  type: string
+
+steps:
+  - task: AzureCLI@2
+    displayName: Register dataset
+    inputs:
+      azureSubscription: $(ml_workspace_connection)
+      scriptType: bash
+      scriptLocation: inlineScript
+      inlineScript: |
+        python templates/shared_code/register_dataset.py -n ${{ parameters.dataset_name }} -d ${{ parameters.dataset_description }} -l ${{ parameters.dataset_local_path }} -p ${{ parameters.dataset_path_on_datastore }}
