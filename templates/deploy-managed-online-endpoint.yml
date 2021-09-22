@@ -8,4 +8,4 @@ steps:
       inlineScript: |
         set -e
         ls
-        az ml endpoint create -n $(ENDPOINT_NAME) -f deploy_managed_online_endpoint.yml
+        az ml endpoint create -n $(ENDPOINT_NAME) -f templates/shared_code/deploy_managed_online_endpoint.yml
