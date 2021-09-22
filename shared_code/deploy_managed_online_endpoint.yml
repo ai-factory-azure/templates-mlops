@@ -17,7 +17,7 @@ deployments:
       name: env-model1
       version: 1
       path: .
-      conda_file: file:../../project-template/controller/environments/online-endpoint-environment.yml
+      conda_file: file:project-template/controller/environments/online-endpoint-environment.yml
       docker:
           image: mcr.microsoft.com/azureml/openmpi3.1.2-ubuntu18.04:20210301.v1
     instance_type: Standard_F2s_v2
