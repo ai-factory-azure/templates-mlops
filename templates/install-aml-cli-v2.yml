@@ -9,7 +9,5 @@ steps:
       inlineScript: |
         set -e # fail on error
         az version
-        az extension remove -n azure-cli-ml
-        az extension remove -n ml
         az extension add -n ml -y
         az extension update -n ml
