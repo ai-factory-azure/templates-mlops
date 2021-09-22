@@ -11,13 +11,13 @@ deployments:
     model: azureml:sklearn_regression_model.pkl:1
     code_configuration:
       code: 
-        local_path: code/src/
+        local_path: /home/vsts/work/1/s/project-template/code/src/
       scoring_script: score.py
     environment: 
       name: env-model1
       version: 1
       path: .
-      conda_file: controller/environments/online-endpoint-environment.yml
+      conda_file: /home/vsts/work/1/s/project-template/controller/environments/online-endpoint-environment.yml
       docker:
           image: mcr.microsoft.com/azureml/openmpi3.1.2-ubuntu18.04:20210301.v1
     instance_type: Standard_F2s_v2
