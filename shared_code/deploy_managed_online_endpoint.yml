@@ -12,7 +12,7 @@ deployments:
     code_configuration:
       code: 
         local_path: ../../code/src/
-      scoring_script: $(scoring_script)
+      scoring_script: score.py
     environment: 
       name: env-model1
       version: 1
