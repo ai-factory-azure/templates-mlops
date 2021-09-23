@@ -9,4 +9,4 @@ steps:
         set -e
         ls
         pwd
-        az ml endpoint create -f code/azureml/deploy_managed_online_endpoint.yml
+        az ml endpoint create -n $(endpoint_name) -f code/azureml/deploy_managed_online_endpoint.yml
