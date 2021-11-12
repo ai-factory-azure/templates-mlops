@@ -16,7 +16,7 @@ def main():
     print("current directory: " + os.getcwd())
     ws = Workspace.from_config()
     datastore = ws.get_default_datastore()
-    datastore.upload(src_dir = args.l, target_path = args.p, overwrite = True, show_progress = True)
+    # datastore.upload(src_dir = args.l, target_path = args.p, overwrite = True, show_progress = True)
     print(f"About to register dataset {args.n}")
 
     dataset = Dataset.File.upload_directory(src_dir=args.l,target=datastore)
