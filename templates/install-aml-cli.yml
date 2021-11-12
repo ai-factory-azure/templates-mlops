@@ -9,4 +9,4 @@ steps:
       inlineScript: |
         set -e # fail on error
         az version
-        az extension add -n azure-cli-ml
+        python -m pip install -U --force-reinstall pip pip install azure-cli==2.29
