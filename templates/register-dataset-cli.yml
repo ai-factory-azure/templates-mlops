@@ -1,0 +1,11 @@
+steps:
+  - task: AzureCLI@2
+    displayName: Register Dataset
+    inputs:
+      azureSubscription: $(ml_workspace_connection)
+      scriptType: bash
+      scriptLocation: inlineScript
+      workingDirectory: code/
+      inlineScript: |
+        set -e # fail on error
+        az ml data create --file azureml/dataset
