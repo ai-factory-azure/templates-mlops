@@ -13,6 +13,7 @@ def parse_args():
 def main():
     args = parse_args()
     print(args)
+    print("current directory: " + os.getcwd())
     ws = Workspace.from_config()
     datastore = ws.get_default_datastore()
     datastore.upload(src_dir = args.l, target_path = args.p, overwrite = True, show_progress = True)
