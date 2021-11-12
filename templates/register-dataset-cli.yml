@@ -8,4 +8,4 @@ steps:
       workingDirectory: code/
       inlineScript: |
         set -e # fail on error
-        az ml data create --file azureml/dataset
+        az ml dataset create --file azureml/dataset
