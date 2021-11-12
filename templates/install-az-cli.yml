@@ -1,6 +1,6 @@
 steps:
   - task: AzureCLI@2
-    displayName: Install AML CLI
+    displayName: Install AZ CLI
     inputs:
       azureSubscription: $(ml_workspace_connection)
       scriptType: bash
