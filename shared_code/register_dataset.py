@@ -18,8 +18,8 @@ def main():
     datastore.upload(src_dir = args.l, target_path = args.p, overwrite = True, show_progress = True)
     print(f"About to register dataset {args.n}")
 
-    dataset = Dataset.File.from_files(path=[(datastore, args.p)], validate=True)
-    dataset = dataset.register(workspace=ws,name=args.n, description=args.d)
+    dataset = Dataset.File.upload_directory(src_dir=args.l,target=datastore)
+    dataset = dataset.register(workspace=ws,name=args.n, description=args.d,create_new_version=True)
     print("Dataset registered")
 
 if __name__ == "__main__":
