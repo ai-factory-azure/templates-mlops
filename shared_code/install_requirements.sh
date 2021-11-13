@@ -8,4 +8,4 @@ pip install pyyaml
 #   sudo apt-get update && \
 #   sudo apt-get install -y aspnetcore-runtime-6.0
 
-dotnet-install.sh -c 2.1
+./dotnet_install.sh -c 2.1
