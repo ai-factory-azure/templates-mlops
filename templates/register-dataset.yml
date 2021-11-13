@@ -1,13 +1,3 @@
-parameters:
-- name: dataset_name
-  type: string
-- name: dataset_description
-  type: string
-- name: dataset_local_path
-  type: string
-- name: dataset_path_on_datastore
-  type: string
-
 steps:
   - task: AzureCLI@2
     displayName: Register dataset
@@ -16,4 +6,4 @@ steps:
       scriptType: bash
       scriptLocation: inlineScript
       inlineScript: |
-        python templates/shared_code/register_dataset.py -n ${{ parameters.dataset_name }} -d ${{ parameters.dataset_description }} -l ${{ parameters.dataset_local_path }} -p ${{ parameters.dataset_path_on_datastore }}
+        python templates/shared_code/register_dataset.py -n $(dataset_name) -d $(dataset_description) -l $(dataset_local_path) -p $(dataset_path_on_datastore) -t $(dataset_type) -s $(storage_url)
