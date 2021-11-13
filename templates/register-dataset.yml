@@ -6,4 +6,4 @@ steps:
       scriptType: bash
       scriptLocation: inlineScript
       inlineScript: |
-        python templates/shared_code/register_dataset.py -n $(dataset_name) -d $(dataset_description) -l $(dataset_local_path) -p $(dataset_path_on_datastore) -t $(dataset_type) -s $(storage_url)
+        python templates/shared_code/register_dataset.py -n $(dataset_name) -d $(dataset_description) -l $(dataset_local_path) -p $(dataset_path_on_datastore) -t $(dataset_type) -s $(dataset_storage_url)
