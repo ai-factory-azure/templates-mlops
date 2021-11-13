@@ -1,0 +1,5 @@
+steps:
+  - task: Bash@3
+    displayName: 'Install Dotnet'
+    inputs:
+      filePath: templates/shared_code/dotnet_install.sh
