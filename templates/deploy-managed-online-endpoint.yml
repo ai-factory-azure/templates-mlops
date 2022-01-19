@@ -9,4 +9,5 @@ steps:
         set -e
         ls
         pwd
-        az ml endpoint create -n $(endpoint_name) -f code/azureml/deploy_managed_online_endpoint.yml
+        az ml online-endpoint create --name $ENDPOINT_NAME -f code/azureml/endpoint.yml
+        az ml online-deployment create --name $(deployment_name) --endpoint $ENDPOINT_NAME -f code/azureml/$(deployment_file) --set model=$(model)
