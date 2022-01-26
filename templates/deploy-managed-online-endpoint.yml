@@ -10,4 +10,4 @@ steps:
         ls
         pwd
         az ml online-endpoint create --name $ENDPOINT_NAME -f code/azureml/endpoint.yml
-        az ml online-deployment create --name $(deployment_name) --endpoint $ENDPOINT_NAME -f code/azureml/$(deployment_file) --set model=$(model)
+        az ml online-deployment create --name $(deployment_name) --endpoint $ENDPOINT_NAME -f code/azureml/$(deployment_file) --set model.local_path=$(model)
